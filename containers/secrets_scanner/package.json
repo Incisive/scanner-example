@@ -1,0 +1,17 @@
+{
+    "name": "secrets-scanner",
+    "version": "1.0.0",
+    "description": "Secrets scanner",
+    "author": "Ryan Smith <rsmith@redventures.com>",
+    "license": "ISC",
+    "scripts": {
+        "start": "node ./index.js"
+    },
+    "dependencies": {
+        "aws-sdk": "^2.410.0",
+        "newrelic": "^5.5.0"
+    },
+    "engines": {
+        "node": ">= 8.3.0"
+    }
+}

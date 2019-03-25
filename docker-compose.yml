@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+    probot:
+        build:
+            context: ${PWD}/containers/probot/
+            target: builder
+        command: npm run dev
+        ports:
+            - '3000:3000'
+        volumes:
+            - ${PWD}/probot:/app
+
+            # Build-time dependencies volume, to re-install depds just run docker-compose build --no-cache
+            - /app/node_modules
