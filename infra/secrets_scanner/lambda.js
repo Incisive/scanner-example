@@ -9,7 +9,7 @@ const accountId = scannerConfig.require('accountId');
 const { cluster } = require('../ecs');
 const { secretsVpc } = require('../vpc');
 const { scannerTask } = require('./ecs');
-const { taskRole } = require('../probot/iam');
+const { taskRole } = require('../common/iam');
 
 const secretsScannerSg = new awsx.ec2.SecurityGroup(`secrets-scanner-internal-${env}`, {
     vpc: secretsVpc,

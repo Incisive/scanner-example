@@ -11,25 +11,7 @@ const { cluster } = require('../ecs');
 const { secretsVpc } = require('../vpc');
 const { paramStoreKms } = require('../kms');
 const { scannerActivity } = require('./step_functions');
-
-// Role for the fargate task that scans the repos for secrets.
-// This needs access to the state machine, s3, param store (thus kms)
-const taskRole = new aws.iam.Role(`secrets-scanner-task-${env}`, {
-    assumeRolePolicy: JSON.stringify({
-        Version: '2012-10-17',
-        Statement: [
-            {
-                Effect: 'Allow',
-                Principal: {
-                    Service: 'ecs-tasks.amazonaws.com',
-                },
-                Action: 'sts:AssumeRole',
-            },
-        ],
-    }),
-});
-
-exports.taskRole = taskRole;
+const { taskRole } = require('../common/iam');
 
 const taskRolePolicy = new aws.iam.RolePolicy(`secrets-scanner-task-${env}`, {
     role: taskRole.id,
